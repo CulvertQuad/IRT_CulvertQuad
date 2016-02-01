@@ -38,7 +38,7 @@ trans_z = -400;
 %-----------
 figure('Position',[50 50 1600 900]);
 %=========================END OF initialisation ============================
-
+set_pitch = 0;
 
 while (1)%(A.init == 0)
     
@@ -64,7 +64,21 @@ while (1)%(A.init == 0)
         trans_x = trans_x + 25 * abs(pitch/20) * sind(yaw);   
     end
     
-    pitch_correction = PID_controller(0.45,0.0001,0,pitch,0,1,[-5 5]);
+    
+    %mouse input to move 
+    m = get(0,'PointerLocation');
+    
+    if ((m(1) > 1000)&&(m(2) < 100))
+        set_pitch = -20;
+    elseif ((m(1) < 1000)&&(m(2) < 100))
+        set_pitch = 20;
+    else
+        set_pitch = 0;
+    end
+    %mouse input
+    
+    
+    pitch_correction = PID_controller(0.45,0.0001,0,pitch,set_pitch,1,[-5 5]);
     pitch = pitch + pitch_correction;
     
     roll = 20* x_correction/25;
