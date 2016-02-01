@@ -1,0 +1,66 @@
+%{
+
+Assume a circular tunnel
+
++y
+^
+|
+|
+|
+-----------> +x
+ 
++z: into page
+
+clockwise rotation = +ve (left hand)
+
+%}
+clear all
+close all
+clc
+
+%{
+tunnel_r = input('Radius of tunnel (mm) = ');
+quad_pos(1) = input('Quad x (mm) off centre: ');
+quad_pos(2) = input('Quad y (mm) off centre: ');
+
+fprintf('Rotation angle in degree:\n');
+pitch = input('pitch = ');
+roll  = input('roll = ');
+yaw   = input('yaw = ');
+%}
+
+%for easy testing/debugging
+tunnel_r = 2;
+quad_pos(1) = 0;
+quad_pos(2) = 0;
+
+pitch = 0;
+roll = 00;
+yaw = 30;
+
+%centre
+xc = quad_pos(1);
+yc = quad_pos(2);
+
+%Rotation matrices
+Rx = [1 0 0;0 cosd(pitch) -sind(pitch); 0 sind(pitch) cosd(pitch)];
+Ry = [cosd(roll) 0 sind(roll);0 1 0; -sind(roll) 0 cosd(roll)];
+Rz = [cosd(yaw) -sind(yaw) 0;sind(yaw) cosd(yaw) 0; 0 0 1];
+
+R = Rx*Ry*Rz
+
+theta = 0:360;
+x = tunnel_r * cosd(theta);
+z = tunnel_r * sind(theta); 
+
+for theta = 1:361
+   pointCloud = R*[x(theta);0;z(theta)];  
+   x(theta) = pointCloud(1);
+   y(theta) = pointCloud(2);
+end
+
+
+
+plot(x,y,'.', xc, yc, 'ro')
+
+daspect([1 1 1])
