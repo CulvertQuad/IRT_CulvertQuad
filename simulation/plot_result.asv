@@ -30,11 +30,15 @@ set(g2, 'MarkerSize', 30);
 grid on
 
 axis equal
-view(45,45)
+
+if (A
+
+view(90,0)
 
 %figure;
 subplot(1,2,2);
-plot(scan_x,scan_z,'r.',0,0,'or',cx,cy,'ok', scan_x(91),scan_z(91),'ob', scan_x(270),scan_z(270),'ob')
+plot(scan_x,scan_z,'r.',0,0,'or',cx,cy,'ok', scan_x(91),scan_z(91),'ob', scan_x(271),scan_z(271),'ob')
 hold on
-plot([scan_x scan_x(91)],[scan_z scan_z(91)],'r.')
+plot([0 scan_x(91)],[0 scan_z(91)],'r',[0 scan_x(271)],[0 scan_z(271)],'r',...
+     [0 scan_x(1)],[0 scan_z(1)],'r',[0 scan_x(181)],[0 scan_z(181)],'r')
 axis equal

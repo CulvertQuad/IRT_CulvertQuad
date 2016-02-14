@@ -30,7 +30,19 @@ set(g2, 'MarkerSize', 30);
 grid on
 
 axis equal
-view(45,45)
+
+if A.init == 0
+    az = 45;
+    el = 45;
+end
+
+if (A.set_view)
+   clc
+   az = input('az: ');
+   el = input('el: ');
+end
+
+view(az,el)
 
 %figure;
 subplot(1,2,2);

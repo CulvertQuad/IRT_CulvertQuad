@@ -29,12 +29,12 @@ fi = 0:359;
 
 %----- Pitch and trans
 pitch = -20;
-roll  = 0;
+roll  = -45;
 yaw   = 30;
 
 trans_x = 400;
 trans_y = 0;
-trans_z = -400;
+trans_z = -100;
 %-----------
 figure('Position',[50 50 1600 900]);
 %=========================END OF initialisation ============================
@@ -67,6 +67,12 @@ while (1)%(A.init == 0)
     
     %mouse input to move 
     m = get(0,'PointerLocation');
+    
+    if ((m(1) < 50) && (m(2) > 500))
+        A.set_view = 1;
+    else
+        A.set_view = 0;
+    end
     
     if ((m(1) > 1000)&&(m(2) < 100))
         set_pitch = -20;

@@ -28,15 +28,7 @@ fill3(base_x, base_y, base_z, 'b');
 alpha(0.3);
 
 %quarter circle view of the water
-t = 120:0.2:240;
-water_x = A.tunnel_r * sind(t);
-water_y = zeros(1, length(t));
-water_z = A.tunnel_r * cosd(t);
 
-fill3(water_x, water_y, water_z, 'b');
-fill3(water_x, water_y - A.tunnel_l*0.5, water_z, 'b');
-fill3(water_x, water_y + A.tunnel_l*1.2, water_z, 'b');
-alpha(0.5);
 
 %reference plane
 t = 0:0.2:360;

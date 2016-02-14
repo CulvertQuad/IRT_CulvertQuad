@@ -29,16 +29,11 @@ for i = 1:length(fi)
     
     if norm([xtemp ytemp ztemp]) <= 6000;
 
-        %if the scan hits the water recalculate intersection
+        
         if ztemp < -A.tunnel_r/2
             ztemp = -A.tunnel_r/2;
             
-            %recalculate the x y coordinates
-            t = (-A.tunnel_r/2 - quad_z(end))/(quad_z(end) - z_circle(i));
-            xtemp = quad_x(end) + t*(quad_x(end)-x_circle(i));
-            ytemp = quad_y(end) + t*(quad_y(end)-y_circle(i));            
         end
-        
         z(count) = ztemp;
         x(count) = xtemp;
         y(count) = ytemp;        
